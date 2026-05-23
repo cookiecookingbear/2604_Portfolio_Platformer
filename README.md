@@ -13,8 +13,14 @@
     - 해결
       1. (미결) 점프 한것까지 천천히 떨어질 수는 없으므로, 브레이크 가속(음수)를 따로 선언하여 입력이 없으면 멈추는 식으로 해결해야 할 것으로 보임.
     - 알게된 것
-        1. if문을 여러 번 사용하지 않더라도, Mathf.MoveTowards()를 이용하면 한줄로 해결이 가능하다.
-            >Mathf.MoveTowards(현재속도, 목표속도, 가속도 * Time.deltaTime)
+        1. if문을 여러 번 사용하지 않더라도, Mathf.MoveTowards()를 이용하면 한줄로 해결이 가능하다.\
+           가속도를 이용하여 목표 속도에 도달하도록 구현하는 코드를 적을 때,
+           >```csharp
+           >if(velocity.x<목표속도){
+           >velocity.x += 가속도 * Time.fixedDeltaTime;}
+           처럼 작성하면, 목표속도보다 실제 속도가 더 커지는 경우가 발생할 수 있다. 따라서, 아래와 같이 작성하면 그런 오류를 방지할 수 있다.
+           >```csharp
+           >Mathf.MoveTowards(현재속도, 목표속도, 가속도 * Time.fixedDeltaTime)
         2. GetComponent\<T>를 자꾸 Start()에다 쓰려고 하는데, Awake()가 관행상 더 알맞은 위치다.
             > 스크립트 실행 시 Awake() -> OnEnable() -> Start() 순으로 실행되므로, Start()에서 GetComponent\<T>를 쓰면 다른 스크립트에서 Start()보다 먼저 실행되는 경우 NullReferenceException이 발생할 수 있다.
         3. OnDrawGizmos()에서 rigidbody2d등을 이용 할 때, 스크립트에서 GetComponent\<T>한 것 때문에 에디터 상에서 얘 널이라고 자꾸 징징대면, if(rb == null) return;으로 조용하게 만들어 줄 수 있다.
