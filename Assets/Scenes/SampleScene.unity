@@ -728,6 +728,9 @@ MonoBehaviour:
   dashSpd: 8.5
   dashAcc: 20
   jumpForce: 10
+  jumpWalkAcc: 8.5
+  jumpDashAcc: 17.5
+  direction: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

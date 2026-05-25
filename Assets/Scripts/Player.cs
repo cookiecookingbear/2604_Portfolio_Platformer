@@ -16,11 +16,10 @@ public class Player : MonoBehaviour
 {
     private enum State
     {
-        Idle_R, Idle_L,
-        Walk_R, Walk_L,
-        Run_R, Run_L,
-        Jump_R, Jump_L,Jump_Idle,
-        Break_R, Break_L
+        Idle,
+        Walk,
+        Dash,
+        Jump
     }
 
     [SerializeField, Tooltip("일반이동속도 캡")] private float walkSpd = 5.0f;
@@ -28,16 +27,21 @@ public class Player : MonoBehaviour
     [SerializeField, Tooltip("브레이크 속도, 추천 : moveSpeed*3")] private float breakAcc = 15.0f;
     [SerializeField, Tooltip("대쉬속도 캡")] private float dashSpd = 8.5f;
     [SerializeField, Tooltip("대쉬 가속도")] private float dashAcc = 20.0f;
-    [SerializeField, Tooltip("점프 힘, rb 중력배율 3에서 10")] private float jumpForce = 10.0f;
-    [SerializeField, Tooltip("점프시 좌우 이동속도 캡, walkSpd보다 작게")] private float jumpMoveSpd = 4.0f;
-    [SerializeField, Tooltip("점프시 좌우 이동힘, walkAcc보다 작게")] private float jumpAcc = 8.5f;
 
-    private bool isFacingLeft = false;
+    [SerializeField, Tooltip("점프 힘, rb 중력배율 3에서 10")] private float jumpForce = 10.0f;
+    [SerializeField, Tooltip("점프시 좌우 이동힘, walkAcc보다 작게")] private float jumpWalkAcc = 8.5f;
+    [SerializeField, Tooltip("점프시 좌우 이동속도 캡, walkSpd보다 작게")] private float jumpDashAcc = 17.5f;
+
+
+    [SerializeField, Tooltip("방향, 우 = 1, 좌 = -1")] private int direction = 1;
+
+    //private bool isFacingLeft = false;
     private bool canJump = false;
     private bool isGrounded = false;
+    private bool isDashing = false;
 
 
-    private State state = State.Idle_R;
+    private State state = State.Idle;
     private Rigidbody2D rb;
     //private Animator animator;
 
@@ -50,6 +54,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        Update_Direction();
         Update_State();
     }
 
@@ -60,67 +65,55 @@ public class Player : MonoBehaviour
         FixedUpdate_InAirMove();
     }
 
-    private void Update_State()
+    private void Update_Direction()
     {
-        if (isFacingLeft)
-        {
-            state = State.Idle_L;
-            if (isGrounded == false)
-            {
-                state = State.Jump_Idle;
-            }
-        }
-        else 
-        { 
-            state = State.Idle_R; 
-            if(isGrounded == false)
-            {
-                state = State.Jump_Idle;
-            }
-        }
-
-
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            if (isGrounded == true)
-            {
-                state = State.Walk_R;
-                //TODO : anim추가
-                if (Input.GetKey(KeyCode.Z))
-                {
-                    state = State.Run_R;
-                }
-            }
-            else if (isGrounded == false)
-            {
-                state = State.Jump_R;
-            }
-            isFacingLeft = false;
+            direction = 1;
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            if (isGrounded == true)
-            {
-                state = State.Walk_L;
-                if (Input.GetKey(KeyCode.Z))
-                {
-                    state = State.Run_L;
-                }
-            }
-            else if (isGrounded == false)
-            {
-                state = State.Jump_L;
-            }
-
-
-            isFacingLeft = true;
+            direction = -1;
         }
+        else
+        {
+            direction = 0;
+        }
+    }
 
+    private void Update_State()
+    {
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             isGrounded = false;
+            //state = State.Jump;
         }
 
+        if (Input.GetKey(KeyCode.Z))
+        {
+            isDashing = true;
+        }
+        else isDashing = false;
+
+        if(isGrounded == false)
+        {
+            state = State.Jump;
+        }
+        else if (direction != 0)
+        {
+            if (isDashing == false)
+            {
+                state = State.Walk;
+            }
+            else
+            {
+                state = State.Dash;
+            }
+        }
+        else
+        {
+            state = State.Idle;
+        }
     }
 
     private void FixedUpdate_Move()
@@ -128,57 +121,28 @@ public class Player : MonoBehaviour
         Vector2 velocity = rb.linearVelocity;
 
         //이동 미입력시 브레이크 속도 계산
-        if (state == State.Idle_R || state == State.Idle_L)
+        if (state == State.Idle)
         {
-            if (Mathf.Abs(velocity.x) > 0)
-            {
-                velocity.x = Mathf.MoveTowards(
+            velocity.x = Mathf.MoveTowards(
                     velocity.x,
                     0,
                     breakAcc * Time.fixedDeltaTime);
-            }
         }
         //좌우 걷기 속도 계산
-        if (state == State.Walk_R)
+        if(state == State.Walk)
         {
-            if (velocity.x < walkSpd)
-            {
-                velocity.x = Mathf.MoveTowards(
-                    velocity.x,
-                    walkSpd,
-                    walkAcc * Time.fixedDeltaTime);
-            }
-        }
-        else if (state == State.Walk_L)
-        {
-            if (velocity.x > -walkSpd)
-            {
-                velocity.x = Mathf.MoveTowards(
-                    velocity.x,
-                    -walkSpd,
-                    walkAcc * Time.fixedDeltaTime);
-            }
+            velocity.x = Mathf.MoveTowards(
+                velocity.x,
+                direction * walkSpd,
+                walkAcc * Time.fixedDeltaTime);
         }
         //좌우 대쉬 속도 계산
-        if (state == State.Run_R)
+        if(state == State.Dash)
         {
-            if (velocity.x < dashSpd)
-            {
-                velocity.x = Mathf.MoveTowards(
-                    velocity.x,
-                    dashSpd,
-                    dashAcc * Time.fixedDeltaTime);
-            }
-        }
-        else if (state == State.Run_L)
-        {
-            if (velocity.x > -dashSpd)
-            {
-                velocity.x = Mathf.MoveTowards(
-                    velocity.x,
-                    -dashSpd,
-                    dashAcc * Time.fixedDeltaTime);
-            }
+            velocity.x = Mathf.MoveTowards(
+                velocity.x,
+                direction * dashSpd,
+                dashAcc * Time.fixedDeltaTime);
         }
         rb.linearVelocity = velocity; //최종 적용
     }
@@ -187,14 +151,15 @@ public class Player : MonoBehaviour
     {
         if (canJump == false) return;
 
-        //Vector2 velocity = rb.linearVelocity;
-        if (state == State.Jump_L || state == State.Jump_R)
+        if (state == State.Jump)
         {
             canJump = false;
 
             Vector2 velocity = rb.linearVelocity;
 
             velocity.y = jumpForce;
+
+
             rb.linearVelocity = velocity;
             print("점프실행완료");
         }
@@ -204,20 +169,18 @@ public class Player : MonoBehaviour
     private void FixedUpdate_InAirMove()
     {
         Vector2 velocity = rb.linearVelocity;
-        if(state == State.Jump_R)
+        if(state == State.Jump && isDashing == false)
         {
             velocity.x = Mathf.MoveTowards(
                 velocity.x,
-                jumpMoveSpd,
-                jumpAcc * Time.fixedDeltaTime);
-            print("점프중 우로이동");
-        }else if (state == State.Jump_L)
+                direction *walkSpd,
+                jumpWalkAcc * Time.fixedDeltaTime);
+        }else if (state == State.Jump && isDashing == true)
         {
             velocity.x  = Mathf.MoveTowards(
                 velocity.x,
-                -jumpMoveSpd,
-                jumpAcc * Time.fixedDeltaTime);
-            print("점프중 좌로이동");
+                direction * dashSpd,
+                jumpDashAcc * Time.fixedDeltaTime);
         }
         rb.linearVelocity = velocity;
     }
@@ -230,7 +193,7 @@ public class Player : MonoBehaviour
             isGrounded = true;
         }
     }
-
+    //TODO : int direction 리팩터링 종료시 isFacingLeft정리할것
 
     private void OnDrawGizmos()
     {
@@ -243,8 +206,13 @@ public class Player : MonoBehaviour
         style.normal.textColor = Color.black;
         style.alignment = TextAnchor.MiddleCenter;
 
+        string dir="중립";
+        if (direction == 1) dir = "오른쪽";
+        else if (direction == -1) dir = "왼쪽";
+        else if (direction == 0) dir = "중립";
+
         string str = "속도 : " + velocity.x.ToString();
-        str += "\n상태 : " + state.ToString();
+        str += "\n상태 : " + state.ToString() +  dir;
         str += "\ncanJump : " + canJump.ToString();
         str += "\nisGrounded : " + isGrounded.ToString();
 
