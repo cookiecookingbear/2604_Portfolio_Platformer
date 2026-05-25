@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
         Idle_R, Idle_L,
         Walk_R, Walk_L,
         Run_R, Run_L,
-        Jump_R, Jump_L,
+        Jump_R, Jump_L,Jump_Idle,
         Break_R, Break_L
     }
 
@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
     [SerializeField, Tooltip("대쉬속도 캡")] private float dashSpd = 8.5f;
     [SerializeField, Tooltip("대쉬 가속도")] private float dashAcc = 20.0f;
     [SerializeField, Tooltip("점프 힘, rb 중력배율 3에서 10")] private float jumpForce = 10.0f;
+    [SerializeField, Tooltip("점프시 좌우 이동속도 캡, walkSpd보다 작게")] private float jumpMoveSpd = 4.0f;
+    [SerializeField, Tooltip("점프시 좌우 이동힘, walkAcc보다 작게")] private float jumpAcc = 8.5f;
 
     private bool isFacingLeft = false;
     private bool canJump = false;
@@ -55,7 +57,7 @@ public class Player : MonoBehaviour
     {
         FixedUpdate_Move();
         FixedUpdate_Jump();
-
+        FixedUpdate_InAirMove();
     }
 
     private void Update_State()
@@ -65,7 +67,7 @@ public class Player : MonoBehaviour
             state = State.Idle_L;
             if (isGrounded == false)
             {
-                state = State.Jump_L;
+                state = State.Jump_Idle;
             }
         }
         else 
@@ -73,7 +75,7 @@ public class Player : MonoBehaviour
             state = State.Idle_R; 
             if(isGrounded == false)
             {
-                state = State.Jump_R;
+                state = State.Jump_Idle;
             }
         }
 
@@ -184,6 +186,8 @@ public class Player : MonoBehaviour
     private void FixedUpdate_Jump()
     {
         if (canJump == false) return;
+
+        //Vector2 velocity = rb.linearVelocity;
         if (state == State.Jump_L || state == State.Jump_R)
         {
             canJump = false;
@@ -194,6 +198,28 @@ public class Player : MonoBehaviour
             rb.linearVelocity = velocity;
             print("점프실행완료");
         }
+        
+    }
+
+    private void FixedUpdate_InAirMove()
+    {
+        Vector2 velocity = rb.linearVelocity;
+        if(state == State.Jump_R)
+        {
+            velocity.x = Mathf.MoveTowards(
+                velocity.x,
+                jumpMoveSpd,
+                jumpAcc * Time.fixedDeltaTime);
+            print("점프중 우로이동");
+        }else if (state == State.Jump_L)
+        {
+            velocity.x  = Mathf.MoveTowards(
+                velocity.x,
+                -jumpMoveSpd,
+                jumpAcc * Time.fixedDeltaTime);
+            print("점프중 좌로이동");
+        }
+        rb.linearVelocity = velocity;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
