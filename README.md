@@ -109,7 +109,7 @@
                     velocity.y = jumpForce;
                     rb.linearVelocity = velocity;
                     jumpRequested = false;
-                    }
+                    
                 }
                 ```
         1. isGrounded명확화
