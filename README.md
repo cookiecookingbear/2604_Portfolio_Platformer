@@ -86,8 +86,32 @@
                 > 2단 점프를 구현하기 위해 jumpCount(int)를 도입하고 FixedUpdate_Jump()에 추가했더니, 한 번의 점프 입력에도 jumpCount가 설정한 한계까지 즉시 오르는 문제점 발생
             1. 원인
                 > FixedUpdate_Jump()에서 점프를 실행하는 조건이 state==State.Jump인 것이 문제. 정확히는 Update_State()에서 점프 입력시 state를 Jump로 만들어버리니 착지하기 이전까지 FixedUpdate_Jump()의 구현부가 호출되어 버리는 것이 원인.
+                ```csharp
+                private void FixedUpdate_Jump(){
+                if(canJump == false) return;
+                if(state == State.Jump)
+                {
+                ConsumeJump();
+                Vector2 velocity = rb.linearVelocity;
+                velocity.y = jumpForce;
+                rb.linearVelocity = velocity;
+                }
+                }
+                ```
             1. 해결
                 > jumpRequested(bool)과 ConsumeJump()를 추가 선언, 정의하여 점프 입력시 jumpRequested=true가 되고 점프 구현이 false로 전환되게끔 하여 해결. ConsumeJump()에서는 jumpCount와 canJump를 관리한다.
+                ```csharp
+                private void FixedUpdate_Jump(){
+                    if(canJump == false) return;
+                    if(jumpRequested == false) return;
+                    ConsumeJump();
+                    Vector2 velocity = rb.linearVelocity;
+                    velocity.y = jumpForce;
+                    rb.linearVelocity = velocity;
+                    jumpRequested = false;
+                    }
+                }
+                ```
         1. isGrounded명확화
             1. 내용
                 > 공중에 있는 플랫폼에서 낙하할 경우, isGrounded가 의도와 다르게 true상태로 지속되는 문제점을 발견. 제작할 맵의 플랫폼이 사선으로 배치될 예정이기 때문에 Circle Collider2D의 경우에는 상관없으나 Box Collider2D가 적용될 경우 OnCollisionEnter2D,OnCollisionExit2D을 이용해서는 isGrounded를 정상적으로 검출 할 수 없는 문제점도 발견.
