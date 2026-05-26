@@ -1,0 +1,1079 @@
+fileFormatVersion: 2
+guid: 0fa6cc583cae4a143bc39f3516fd3521
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5717523732225604895
+    second: player_idle_right_breathe_36_0
+  - first:
+      213: -4433754819783324100
+    second: player_idle_right_breathe_36_1
+  - first:
+      213: 640998172735534150
+    second: player_idle_right_breathe_36_2
+  - first:
+      213: 8130896650013656874
+    second: player_idle_right_breathe_36_3
+  - first:
+      213: -7517313590236715555
+    second: player_idle_right_breathe_36_4
+  - first:
+      213: -4748586723479766125
+    second: player_idle_right_breathe_36_5
+  - first:
+      213: 8786121626558821243
+    second: player_idle_right_breathe_36_6
+  - first:
+      213: 7126061091998692439
+    second: player_idle_right_breathe_36_7
+  - first:
+      213: -7992339883579882198
+    second: player_idle_right_breathe_36_8
+  - first:
+      213: 9092261872786663171
+    second: player_idle_right_breathe_36_9
+  - first:
+      213: -3034935966913688580
+    second: player_idle_right_breathe_36_10
+  - first:
+      213: 9030809872805743889
+    second: player_idle_right_breathe_36_11
+  - first:
+      213: 7039541788924948454
+    second: player_idle_right_breathe_36_12
+  - first:
+      213: -7083321691335469602
+    second: player_idle_right_breathe_36_13
+  - first:
+      213: -6203966600484264803
+    second: player_idle_right_breathe_36_14
+  - first:
+      213: -1570727783574067405
+    second: player_idle_right_breathe_36_15
+  - first:
+      213: -4126694059290044761
+    second: player_idle_right_breathe_36_16
+  - first:
+      213: -8836865780745178276
+    second: player_idle_right_breathe_36_17
+  - first:
+      213: 2508628728973985331
+    second: player_idle_right_breathe_36_18
+  - first:
+      213: 4979594961251047582
+    second: player_idle_right_breathe_36_19
+  - first:
+      213: -6095065034426799313
+    second: player_idle_right_breathe_36_20
+  - first:
+      213: 6245680700263379172
+    second: player_idle_right_breathe_36_21
+  - first:
+      213: 1136232104011383658
+    second: player_idle_right_breathe_36_22
+  - first:
+      213: 5418940361709178848
+    second: player_idle_right_breathe_36_23
+  - first:
+      213: -7637013097111182342
+    second: player_idle_right_breathe_36_24
+  - first:
+      213: 8622520044211941862
+    second: player_idle_right_breathe_36_25
+  - first:
+      213: 7943669618190581046
+    second: player_idle_right_breathe_36_26
+  - first:
+      213: 3536224691805599757
+    second: player_idle_right_breathe_36_27
+  - first:
+      213: -6546432322676538781
+    second: player_idle_right_breathe_36_28
+  - first:
+      213: -7526690683483131452
+    second: player_idle_right_breathe_36_29
+  - first:
+      213: 5121293713637310136
+    second: player_idle_right_breathe_36_30
+  - first:
+      213: -1515692166846601652
+    second: player_idle_right_breathe_36_31
+  - first:
+      213: -3770633909213961952
+    second: player_idle_right_breathe_36_32
+  - first:
+      213: 8132343983153795482
+    second: player_idle_right_breathe_36_33
+  - first:
+      213: 3388768242536231610
+    second: player_idle_right_breathe_36_34
+  - first:
+      213: -1305394102017687392
+    second: player_idle_right_breathe_36_35
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_0
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 1625
+        width: 72
+        height: 282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1d3c2eaa89b85f40800000000000000
+      internalID: 5717523732225604895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_1
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 1625
+        width: 71
+        height: 283
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3e83a18b732872c0800000000000000
+      internalID: -4433754819783324100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_2
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 1625
+        width: 71
+        height: 284
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6447393217845e800800000000000000
+      internalID: 640998172735534150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_3
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 1625
+        width: 71
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a274a718c6fb6d070800000000000000
+      internalID: 8130896650013656874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_4
+      rect:
+        serializedVersion: 2
+        x: 1116
+        y: 1625
+        width: 71
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd569bc3e132da790800000000000000
+      internalID: -7517313590236715555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_5
+      rect:
+        serializedVersion: 2
+        x: 1372
+        y: 1625
+        width: 71
+        height: 287
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39b3ad9b881a91eb0800000000000000
+      internalID: -4748586723479766125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_6
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 1305
+        width: 71
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b737a6881139ee970800000000000000
+      internalID: 8786121626558821243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_7
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 1305
+        width: 71
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7547054cecad4e260800000000000000
+      internalID: 7126061091998692439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_8
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 1305
+        width: 71
+        height: 289
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a25c80b9831851190800000000000000
+      internalID: -7992339883579882198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_9
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 1305
+        width: 71
+        height: 289
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 307e64c10043e2e70800000000000000
+      internalID: 9092261872786663171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_10
+      rect:
+        serializedVersion: 2
+        x: 1116
+        y: 1305
+        width: 71
+        height: 289
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfb8d0061ddb1e5d0800000000000000
+      internalID: -3034935966913688580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_11
+      rect:
+        serializedVersion: 2
+        x: 1372
+        y: 1305
+        width: 71
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11d4da66bb1e35d70800000000000000
+      internalID: 9030809872805743889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_12
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 985
+        width: 71
+        height: 288
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6efa36eb5f971b160800000000000000
+      internalID: 7039541788924948454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_13
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 985
+        width: 71
+        height: 287
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed55126637cf2bd90800000000000000
+      internalID: -7083321691335469602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_14
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 985
+        width: 71
+        height: 286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d946fb33f3517e9a0800000000000000
+      internalID: -6203966600484264803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_15
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 985
+        width: 71
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3372b352767a33ae0800000000000000
+      internalID: -1570727783574067405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_16
+      rect:
+        serializedVersion: 2
+        x: 1116
+        y: 985
+        width: 71
+        height: 284
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a65d430e990bb6c0800000000000000
+      internalID: -4126694059290044761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_17
+      rect:
+        serializedVersion: 2
+        x: 1372
+        y: 985
+        width: 71
+        height: 283
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c53f0e264652d5580800000000000000
+      internalID: -8836865780745178276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_18
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 665
+        width: 72
+        height: 282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33685d7a98070d220800000000000000
+      internalID: 2508628728973985331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_19
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 665
+        width: 72
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9891b6fb331b1540800000000000000
+      internalID: 4979594961251047582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_20
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 665
+        width: 72
+        height: 279
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2b261ce4aaf96ba0800000000000000
+      internalID: -6095065034426799313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_21
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 665
+        width: 72
+        height: 278
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e036bf718d1da650800000000000000
+      internalID: 6245680700263379172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_22
+      rect:
+        serializedVersion: 2
+        x: 1116
+        y: 665
+        width: 72
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a634efd1415b4cf00800000000000000
+      internalID: 1136232104011383658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_23
+      rect:
+        serializedVersion: 2
+        x: 1372
+        y: 665
+        width: 72
+        height: 276
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0efc3b65c81f33b40800000000000000
+      internalID: 5418940361709178848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_24
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 345
+        width: 72
+        height: 275
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af3aea10d01e30690800000000000000
+      internalID: -7637013097111182342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_25
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 345
+        width: 72
+        height: 275
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e130ffcb4859a770800000000000000
+      internalID: 8622520044211941862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_26
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 345
+        width: 72
+        height: 274
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63dff4d2e659d3e60800000000000000
+      internalID: 7943669618190581046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_27
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 345
+        width: 72
+        height: 274
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d08b9091f91331130800000000000000
+      internalID: 3536224691805599757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_28
+      rect:
+        serializedVersion: 2
+        x: 1116
+        y: 345
+        width: 72
+        height: 274
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 362cabcac766625a0800000000000000
+      internalID: -6546432322676538781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_29
+      rect:
+        serializedVersion: 2
+        x: 1372
+        y: 345
+        width: 72
+        height: 275
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c1feb493b2db8790800000000000000
+      internalID: -7526690683483131452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_30
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 25
+        width: 72
+        height: 275
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8befacfaf7d721740800000000000000
+      internalID: 5121293713637310136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_31
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 25
+        width: 72
+        height: 276
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c462446310e27fae0800000000000000
+      internalID: -1515692166846601652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_32
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 25
+        width: 72
+        height: 277
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 021624fef640cabc0800000000000000
+      internalID: -3770633909213961952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_33
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 25
+        width: 72
+        height: 278
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a91da2304c3ebd070800000000000000
+      internalID: 8132343983153795482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_34
+      rect:
+        serializedVersion: 2
+        x: 1116
+        y: 25
+        width: 72
+        height: 279
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab23f7a13c2570f20800000000000000
+      internalID: 3388768242536231610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_right_breathe_36_35
+      rect:
+        serializedVersion: 2
+        x: 1372
+        y: 25
+        width: 72
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a088510bfe42ede0800000000000000
+      internalID: -1305394102017687392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      player_idle_right_breathe_36_0: 5717523732225604895
+      player_idle_right_breathe_36_1: -4433754819783324100
+      player_idle_right_breathe_36_10: -3034935966913688580
+      player_idle_right_breathe_36_11: 9030809872805743889
+      player_idle_right_breathe_36_12: 7039541788924948454
+      player_idle_right_breathe_36_13: -7083321691335469602
+      player_idle_right_breathe_36_14: -6203966600484264803
+      player_idle_right_breathe_36_15: -1570727783574067405
+      player_idle_right_breathe_36_16: -4126694059290044761
+      player_idle_right_breathe_36_17: -8836865780745178276
+      player_idle_right_breathe_36_18: 2508628728973985331
+      player_idle_right_breathe_36_19: 4979594961251047582
+      player_idle_right_breathe_36_2: 640998172735534150
+      player_idle_right_breathe_36_20: -6095065034426799313
+      player_idle_right_breathe_36_21: 6245680700263379172
+      player_idle_right_breathe_36_22: 1136232104011383658
+      player_idle_right_breathe_36_23: 5418940361709178848
+      player_idle_right_breathe_36_24: -7637013097111182342
+      player_idle_right_breathe_36_25: 8622520044211941862
+      player_idle_right_breathe_36_26: 7943669618190581046
+      player_idle_right_breathe_36_27: 3536224691805599757
+      player_idle_right_breathe_36_28: -6546432322676538781
+      player_idle_right_breathe_36_29: -7526690683483131452
+      player_idle_right_breathe_36_3: 8130896650013656874
+      player_idle_right_breathe_36_30: 5121293713637310136
+      player_idle_right_breathe_36_31: -1515692166846601652
+      player_idle_right_breathe_36_32: -3770633909213961952
+      player_idle_right_breathe_36_33: 8132343983153795482
+      player_idle_right_breathe_36_34: 3388768242536231610
+      player_idle_right_breathe_36_35: -1305394102017687392
+      player_idle_right_breathe_36_4: -7517313590236715555
+      player_idle_right_breathe_36_5: -4748586723479766125
+      player_idle_right_breathe_36_6: 8786121626558821243
+      player_idle_right_breathe_36_7: 7126061091998692439
+      player_idle_right_breathe_36_8: -7992339883579882198
+      player_idle_right_breathe_36_9: 9092261872786663171
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -28,22 +28,25 @@ public class Player : MonoBehaviour
     [SerializeField, Tooltip("대쉬속도 캡")] private float dashSpd = 8.5f;
     [SerializeField, Tooltip("대쉬 가속도")] private float dashAcc = 20.0f;
 
-    [SerializeField, Tooltip("점프 힘, rb 중력배율 3에서 10")] private float jumpForce = 10.0f;
+    [SerializeField, Tooltip("점프 힘, rb 중력배율 3에서 10")] private float jumpForce = 12.5f;
     [SerializeField, Tooltip("점프시 좌우 이동힘, walkAcc보다 작게")] private float jumpWalkAcc = 8.5f;
     [SerializeField, Tooltip("점프시 좌우 이동속도 캡, walkSpd보다 작게")] private float jumpDashAcc = 17.5f;
 
-
-    [SerializeField, Tooltip("방향, 우 = 1, 좌 = -1")] private int direction = 1;
+    [SerializeField, Tooltip("방향, 우 = 1, 좌 = -1")] private float direction = 0;
 
     //private bool isFacingLeft = false;
     private bool canJump = false;
     private bool isGrounded = false;
     private bool isDashing = false;
 
+    private int jumpCount = 0;
+    private bool jumpRequested = false;
+
 
     private State state = State.Idle;
     private Rigidbody2D rb;
     //private Animator animator;
+
 
 
     private void Awake()
@@ -67,26 +70,17 @@ public class Player : MonoBehaviour
 
     private void Update_Direction()
     {
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            direction = 1;
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            direction = -1;
-        }
-        else
-        {
-            direction = 0;
-        }
+        direction = Input.GetAxisRaw("Horizontal");
     }
 
     private void Update_State()
     {
+        //isGrounded = false;
+
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            isGrounded = false;
-            //state = State.Jump;
+            //isGrounded = false;
+            jumpRequested = true;
         }
 
         if (Input.GetKey(KeyCode.Z))
@@ -113,6 +107,16 @@ public class Player : MonoBehaviour
         else
         {
             state = State.Idle;
+        }
+    }
+
+    private void ConsumeJump()
+    {
+        jumpCount++;
+
+        if(jumpCount >= 2)
+        {
+            canJump = false;
         }
     }
 
@@ -149,33 +153,33 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate_Jump()
     {
-        if (canJump == false) return;
-
-        if (state == State.Jump)
-        {
-            canJump = false;
-
-            Vector2 velocity = rb.linearVelocity;
-
-            velocity.y = jumpForce;
-
-
-            rb.linearVelocity = velocity;
-            print("점프실행완료");
-        }
+        if (canJump == false ) return;
+        if (jumpRequested == false) return;
         
+        ConsumeJump();
+
+        Vector2 velocity = rb.linearVelocity;
+
+        velocity.y = jumpForce;
+
+        rb.linearVelocity = velocity;
+
+        jumpRequested = false;
     }
 
     private void FixedUpdate_InAirMove()
     {
+        if (state != State.Jump) return;
+
         Vector2 velocity = rb.linearVelocity;
-        if(state == State.Jump && isDashing == false)
+
+        if(isDashing == false)
         {
             velocity.x = Mathf.MoveTowards(
                 velocity.x,
                 direction *walkSpd,
                 jumpWalkAcc * Time.fixedDeltaTime);
-        }else if (state == State.Jump && isDashing == true)
+        }else if (isDashing == true)
         {
             velocity.x  = Mathf.MoveTowards(
                 velocity.x,
@@ -191,7 +195,13 @@ public class Player : MonoBehaviour
         {
             canJump = true;
             isGrounded = true;
+            jumpCount = 0;
         }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        isGrounded = false;
     }
     //TODO : int direction 리팩터링 종료시 isFacingLeft정리할것
 
@@ -215,6 +225,7 @@ public class Player : MonoBehaviour
         str += "\n상태 : " + state.ToString() +  dir;
         str += "\ncanJump : " + canJump.ToString();
         str += "\nisGrounded : " + isGrounded.ToString();
+        str += "\njumpCount : " + jumpCount;
 
         Handles.Label((Vector2)transform.position + new Vector2(0, 1.25f), str, style);
     }

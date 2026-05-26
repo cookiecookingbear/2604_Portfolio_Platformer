@@ -1,10 +1,9 @@
 using UnityEngine;
 
-public class UnitTest : MonoBehaviour
+public class UnitTest_OverlapBox : MonoBehaviour
 {
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private float groundCheckDistance = 0.1f;
     [SerializeField] private Vector2 size = new Vector2(0.1f, 0.1f);
 
     private bool isGrounded = false;
@@ -18,29 +17,22 @@ public class UnitTest : MonoBehaviour
     {
         if (groundCheck == null) return;
 
-        RaycastHit2D hit = Physics2D.BoxCast(
+        Collider2D hit = Physics2D.OverlapBox(
             groundCheck.position,
             size,
             0f,
-            Vector2.down,
-            groundCheckDistance,
             groundMask);
 
-        isGrounded = hit.collider != null;
+        isGrounded = hit != null;
 
-        DrawBoxCastDebug();
+        DrawOverlapBoxDebug();
     }
 
-    private void DrawBoxCastDebug()
+    private void DrawOverlapBoxDebug()
     {
-        Vector2 startCenter = groundCheck.position;
-        Vector2 endCenter = startCenter + Vector2.down * groundCheckDistance;
         Color resultColor = isGrounded ? Color.green : Color.red;
 
-        DrawDebugBox(startCenter, size, Color.yellow);
-        DrawDebugBox(endCenter, size, resultColor);
-
-        Debug.DrawLine(startCenter, endCenter, Color.cyan);
+        DrawDebugBox(groundCheck.position, size, resultColor);
     }
 
     private void DrawDebugBox(Vector2 center, Vector2 boxSize, Color color)
