@@ -28,11 +28,22 @@ public class Player : MonoBehaviour
     [SerializeField, Tooltip("대쉬속도 캡")] private float dashSpd = 8.5f;
     [SerializeField, Tooltip("대쉬 가속도")] private float dashAcc = 20.0f;
 
-    [SerializeField, Tooltip("점프 힘, rb 중력배율 3에서 10")] private float jumpForce = 12.5f;
+    [SerializeField, Tooltip("점프 힘, rb 중력배율 3에서 12.5")] private float jumpForce = 12.5f;
     [SerializeField, Tooltip("점프시 좌우 이동힘, walkAcc보다 작게")] private float jumpWalkAcc = 8.5f;
-    [SerializeField, Tooltip("점프시 좌우 이동속도 캡, walkSpd보다 작게")] private float jumpDashAcc = 17.5f;
+    [SerializeField, Tooltip("점프시 좌우 대쉬속도 캡, dashSpd보다 작게")] private float jumpDashAcc = 17.5f;
 
     [SerializeField, Tooltip("방향, 우 = 1, 좌 = -1")] private float direction = 0;
+    private int facingDirection = 1;
+
+    public float Direction => direction;
+    public int FacingDirection => facingDirection;
+
+
+    [Header("OverlapBox 관련 변수 3종")]
+    [SerializeField, Tooltip("캐릭터 발밑 게임오브젝트")] private Transform groundCheck;
+    [SerializeField, Tooltip("검출할 레이어 마스크")] private LayerMask groundMask;
+    [SerializeField, Tooltip("검사할 박스 사이즈")] private Vector2 size = new Vector2(0.3f, 0.5f);
+
 
     //private bool isFacingLeft = false;
     private bool canJump = false;
@@ -71,15 +82,22 @@ public class Player : MonoBehaviour
     private void Update_Direction()
     {
         direction = Input.GetAxisRaw("Horizontal");
+
+        if(direction > 0)
+        {
+            facingDirection = 1;
+        }else if ( direction < 0)
+        {
+            facingDirection = -1;
+        }
     }
 
     private void Update_State()
     {
-        //isGrounded = false;
+        Update_CheckGrounded();
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            //isGrounded = false;
             jumpRequested = true;
         }
 
@@ -110,15 +128,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void ConsumeJump()
-    {
-        jumpCount++;
-
-        if(jumpCount >= 2)
-        {
-            canJump = false;
-        }
-    }
+    
 
     private void FixedUpdate_Move()
     {
@@ -188,7 +198,33 @@ public class Player : MonoBehaviour
         }
         rb.linearVelocity = velocity;
     }
+    private void ConsumeJump()
+    {
+        jumpCount++;
 
+        if (jumpCount >= 2)
+        {
+            canJump = false;
+        }
+    }
+
+    private void CoyoteTime()
+    {
+        //TODO
+    }
+
+    private void Update_CheckGrounded()
+    {
+        if (groundCheck is null) return;
+
+        Collider2D hit = Physics2D.OverlapBox(
+            groundCheck.position,
+            size,
+            0f,
+            groundMask);
+
+        isGrounded = hit != null;
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Ground"))

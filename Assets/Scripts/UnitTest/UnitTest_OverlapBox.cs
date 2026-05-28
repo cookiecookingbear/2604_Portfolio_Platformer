@@ -22,7 +22,7 @@ public class UnitTest_OverlapBox : MonoBehaviour
             size,
             0f,
             groundMask);
-
+        print(hit);
         isGrounded = hit != null;
 
         DrawOverlapBoxDebug();
