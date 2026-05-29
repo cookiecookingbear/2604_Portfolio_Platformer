@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using Unity.Collections;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -19,7 +20,8 @@ public class Player : MonoBehaviour
         Idle,
         Walk,
         Dash,
-        Jump
+        Jump,
+        Exhausted
     }
 
     [SerializeField, Tooltip("일반이동속도 캡")] private float walkSpd = 5.0f;
@@ -44,14 +46,31 @@ public class Player : MonoBehaviour
     [SerializeField, Tooltip("검출할 레이어 마스크")] private LayerMask groundMask;
     [SerializeField, Tooltip("검사할 박스 사이즈")] private Vector2 size = new Vector2(0.3f, 0.5f);
 
+    [Header("Coyote Time 관련 변수")]
+    [SerializeField, Tooltip("코요테타임, 난이도때문에 굉장히 작게")] private float coyoteTime = 0.1f;
+    [SerializeField, Tooltip("코요테타이머, Update안에서 coyoteTime받아서 차감될 변수")] private float coyoteTimer = 0.0f;
+    [SerializeField,ReadOnly] private bool coyoteTimeActivated = false;
+
+    [SerializeField, Tooltip("대시게이지")] private float dashGauge = 1.0f;
+    [SerializeField, Tooltip("대시 소모량")] private float dashConsume = 0.1f;
+    [SerializeField, Tooltip("대시 회복량")] private float dashRecovery = 0.15f;
+    [SerializeField, Tooltip("탈진시 대시 회복량")] private float exhaustRecovery = 0.33f;
+    private bool dashRequested = false;
+    private bool isDashing = false;
+    private bool isExhausted = false;
+    public float DashGauge => dashGauge;
+
+
 
     //private bool isFacingLeft = false;
     private bool canJump = false;
+    //canJump는 "계산 결과"로서 지금 당장 점프가 가능한 상황인지 최종 판별해주는 bool임을 생각할것
     private bool isGrounded = false;
-    private bool isDashing = false;
 
     private int jumpCount = 0;
     private bool jumpRequested = false;
+    private float jumpRequestTime = 0.15f;
+    private float jumpRequestTimer = 0.0f;
 
 
     private State state = State.Idle;
@@ -69,7 +88,13 @@ public class Player : MonoBehaviour
     private void Update()
     {
         Update_Direction();
+        Update_JumpRequest();
+        Update_CheckGrounded();
+        Update_UsingDash();
+        Update_RecoveringDash();
+        Update_CoyoteTime();
         Update_State();
+        //Update_RecoveringExhaust();
     }
 
     private void FixedUpdate()
@@ -81,6 +106,8 @@ public class Player : MonoBehaviour
 
     private void Update_Direction()
     {
+        if (isExhausted == true) return;
+
         direction = Input.GetAxisRaw("Horizontal");
 
         if(direction > 0)
@@ -94,18 +121,19 @@ public class Player : MonoBehaviour
 
     private void Update_State()
     {
-        Update_CheckGrounded();
+        if (isExhausted == true) return;
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             jumpRequested = true;
+            jumpRequestTimer = jumpRequestTime;
         }
 
         if (Input.GetKey(KeyCode.Z))
         {
-            isDashing = true;
+            dashRequested = true;
         }
-        else isDashing = false;
+        else dashRequested = false;
 
         if(isGrounded == false)
         {
@@ -127,8 +155,6 @@ public class Player : MonoBehaviour
             state = State.Idle;
         }
     }
-
-    
 
     private void FixedUpdate_Move()
     {
@@ -158,6 +184,12 @@ public class Player : MonoBehaviour
                 direction * dashSpd,
                 dashAcc * Time.fixedDeltaTime);
         }
+        //탈진시 속도 0 적용
+        if (state == State.Exhausted && isGrounded == true)
+        {
+            velocity.x = 0;
+        }
+
         rb.linearVelocity = velocity; //최종 적용
     }
 
@@ -165,6 +197,7 @@ public class Player : MonoBehaviour
     {
         if (canJump == false ) return;
         if (jumpRequested == false) return;
+        if(isExhausted == true) return;
         
         ConsumeJump();
 
@@ -198,19 +231,39 @@ public class Player : MonoBehaviour
         }
         rb.linearVelocity = velocity;
     }
+
     private void ConsumeJump()
     {
         jumpCount++;
-
+        coyoteTimeActivated = false;
+        coyoteTimer = 0.0f;
         if (jumpCount >= 2)
         {
             canJump = false;
         }
     }
 
-    private void CoyoteTime()
+    private void Update_CoyoteTime()
     {
-        //TODO
+        if (coyoteTimeActivated == false) return;
+        
+        coyoteTimer -= Time.deltaTime;
+
+        if (coyoteTimer < 0)
+        {
+            coyoteTimer = 0;
+            canJump = false;
+        }
+
+    }
+
+    private void CoyoteTimeActivate()
+    {
+        if (coyoteTimeActivated == false)
+        {
+            coyoteTimer = coyoteTime;
+            coyoteTimeActivated = true;
+        }
     }
 
     private void Update_CheckGrounded()
@@ -224,22 +277,98 @@ public class Player : MonoBehaviour
             groundMask);
 
         isGrounded = hit != null;
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Ground"))
+        jumpCount = hit != null ? 0 : jumpCount;
+
+        if(canJump == false && hit != null)
         {
             canJump = true;
-            isGrounded = true;
-            jumpCount = 0;
+            //그냥 canJump = hit!=null해버리면 발이 땅에서 떨어지는 순간에 canJump가 false되어 2단점프 구현이 안됨.
+        }
+
+        if (coyoteTimeActivated == true &&
+            hit != null) 
+        {
+            coyoteTimeActivated = false;
+            //CTA 회복타이밍을 canJump회복타이밍과 동일하게 해버리면, CTA는 반드시 2단점프 후 착지를 하는 상황이 되어야만 회복됨.
+            //1단점프후 착지시에는 canJump의 변동이 없다.
+        }
+        if (coyoteTimeActivated == false 
+            && hit == null
+            && jumpCount ==0)
+        {
+            CoyoteTimeActivate();
+        }
+    }
+    
+    private void Update_JumpRequest()
+    {
+        if(jumpRequested == false) return;
+        //if(canJump == true) return;
+
+        jumpRequestTimer -= Time.deltaTime;
+
+        if(jumpRequestTimer <= 0)
+        {
+            jumpRequested = false;
+            jumpRequestTimer = 0.0f;
+        }
+    }
+    
+    private void Update_UsingDash()
+    {
+        if (dashRequested == false) return;
+        if (isExhausted == true) return;
+        if (direction == 0) return;
+
+        isDashing = true;
+
+        dashGauge = Mathf.MoveTowards(
+            dashGauge,
+            0,
+            dashConsume * Time.deltaTime);
+
+        if(dashGauge <= 0)
+        {
+            Exhausted();
+        }
+        
+    }
+    private void Update_RecoveringDash()
+    {
+        if (dashRequested == true && direction != 0) return;
+        if (dashGauge >= 1) return;
+
+        isDashing = false;
+
+        if(isExhausted == false)
+        {
+            dashGauge = Mathf.MoveTowards(
+            dashGauge,
+            1,
+            dashRecovery * Time.deltaTime);
+        }
+        else if(isExhausted == true)
+        {
+            dashGauge = Mathf.MoveTowards(
+                        dashGauge,
+                        1,
+                        exhaustRecovery * Time.deltaTime);
+            direction = 0;
+
+            if (dashGauge >= 1)
+            {
+                isExhausted = false;
+            }
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void Exhausted()
     {
-        isGrounded = false;
+        isExhausted = true;
+        dashRequested = false;
+        isDashing = false;
+        state = State.Exhausted;
     }
-    //TODO : int direction 리팩터링 종료시 isFacingLeft정리할것
 
     private void OnDrawGizmos()
     {

@@ -37,18 +37,18 @@ public class Player_CameraPositionObject : MonoBehaviour
 
     
 
-    private void OnDrawGizmos()
-    {
-        if (player is null) return;
+    //private void OnDrawGizmos()
+    //{
+    //    if (player is null) return;
 
-        GUIStyle style = GUIStyle.none;
-        style.normal.textColor = Color.black;
-        style.alignment = TextAnchor.MiddleCenter;
+    //    GUIStyle style = GUIStyle.none;
+    //    style.normal.textColor = Color.black;
+    //    style.alignment = TextAnchor.MiddleCenter;
 
 
-        string str = "";
-        str += "direction" + facingDirection;
+    //    string str = "";
+    //    str += "direction" + facingDirection;
 
-        Handles.Label((Vector2)transform.position + new Vector2(0, 1.25f), str, style);
-    }
+    //    Handles.Label((Vector2)transform.position + new Vector2(0, 1.25f), str, style);
+    //}
 }
