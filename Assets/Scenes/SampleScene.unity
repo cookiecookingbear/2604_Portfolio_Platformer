@@ -1279,6 +1279,10 @@ MonoBehaviour:
   coyoteTime: 0.1
   coyoteTimer: 0
   coyoteTimeActivated: 0
+  dashGauge: 1
+  dashConsume: 0.51
+  dashRecovery: 0.15
+  exhaustRecovery: 0.33
 --- !u!61 &2024290804
 BoxCollider2D:
   m_ObjectHideFlags: 0
