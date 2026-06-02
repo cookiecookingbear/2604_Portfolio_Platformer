@@ -1,5 +1,8 @@
 # 포폴일지
 
+- 여기는 6일차 까지의 일지만 기록되어 있고, 그 이후의 기록은 [포트폴리오 일지 묶음](https://github.com/cookiecookingbear/Portfolio-Log)에서 열람.
+
+
 ## 1일차 (5/23)
 
 ### 만든것
