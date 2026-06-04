@@ -77,6 +77,9 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     //private Animator animator;
 
+    private float yPos;
+    public float YPos => yPos;
+
 
 
     private void Awake()
@@ -94,6 +97,7 @@ public class Player : MonoBehaviour
         Update_RecoveringDash();
         Update_CoyoteTime();
         Update_State();
+        Update_Y_Position();
         //Update_RecoveringExhaust();
     }
 
@@ -360,6 +364,11 @@ public class Player : MonoBehaviour
                 isExhausted = false;
             }
         }
+    }
+
+    private void Update_Y_Position()
+    {
+        yPos = transform.position.y;
     }
 
     private void Exhausted()
