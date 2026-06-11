@@ -55,6 +55,8 @@ public class Player : MonoBehaviour
     [SerializeField, Tooltip("대시 소모량")] private float dashConsume = 0.1f;
     [SerializeField, Tooltip("대시 회복량")] private float dashRecovery = 0.15f;
     [SerializeField, Tooltip("탈진시 대시 회복량")] private float exhaustRecovery = 0.33f;
+
+    private float barrelKnockback = 7.5f;
     private bool dashRequested = false;
     private bool isDashing = false;
     private bool isExhausted = false;
@@ -377,6 +379,15 @@ public class Player : MonoBehaviour
         dashRequested = false;
         isDashing = false;
         state = State.Exhausted;
+    }
+
+    //배럴(Barrel)에서 사용되는 메서드, 충돌시 플레이어 튕겨냄
+    public void HitbyBarrel(Vector2 normal)
+    {
+        print("배럴에맞음");
+
+        Vector2 knockback = normal + Vector2.up;
+        rb.AddForce(knockback * barrelKnockback, ForceMode2D.Impulse);
     }
 
     private void OnDrawGizmos()
