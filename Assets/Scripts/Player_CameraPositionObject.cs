@@ -1,11 +1,11 @@
-using UnityEditor;
+ï»¿using UnityEditor;
 using UnityEngine;
 
 public class Player_CameraPositionObject : MonoBehaviour
 {
 
-    [SerializeField, Tooltip("Ä³¸¯ÅÍ¿ÍÀÇ °Å¸® ÀÎ¼Â")] private float inset = 15.0f;
-    [SerializeField, Tooltip("Ä«¸Ş¶ó¿ë ¿ÀºêÁ§Æ® ÀÌµ¿¼Óµµ")] private float moveSpeed =35.0f;
+    [SerializeField, Tooltip("ìºë¦­í„°ì™€ì˜ ê±°ë¦¬ ì¸ì…‹")] private float inset = 15.0f;
+    [SerializeField, Tooltip("ì¹´ë©”ë¼ìš© ì˜¤ë¸Œì íŠ¸ ì´ë™ì†ë„")] private float moveSpeed =35.0f;
 
     private int facingDirection;
     private Player player;
@@ -22,7 +22,7 @@ public class Player_CameraPositionObject : MonoBehaviour
         {
             facingDirection = player.FacingDirection;
         }
-        else print("ÇÃ·¹ÀÌ¾î ½ºÅ©¸³Æ® ¿¬°á ½ÇÆĞ");
+        else print("í”Œë ˆì´ì–´ ìŠ¤í¬ë¦½íŠ¸ ì—°ê²° ì‹¤íŒ¨");
 
         LateUpdate_LocalPosition();
     }

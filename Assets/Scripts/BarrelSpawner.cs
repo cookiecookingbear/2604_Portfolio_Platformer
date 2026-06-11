@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 
 public class BarrelSpawner : MonoBehaviour
@@ -24,7 +24,7 @@ public class BarrelSpawner : MonoBehaviour
 
         if(playerObj == null)
         {
-            Debug.LogError("ÇÃ·¹ÀÌ¾î ¿ÀºêÁ§Æ® ¿¬°á¾ÈµÊ", this);
+            Debug.LogError("í”Œë ˆì´ì–´ ì˜¤ë¸Œì íŠ¸ ì—°ê²°ì•ˆë¨", this);
 
             enabled = false;
             return;
