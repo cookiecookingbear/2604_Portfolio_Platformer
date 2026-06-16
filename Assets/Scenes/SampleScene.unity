@@ -1638,13 +1638,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8363431759520401728, guid: 733fe534f72f46d4eaf58c24f2e8aa21, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -3735806794413258008, guid: c3cccb102ebaea04caa16c4956257642, type: 3}
+    - target: {fileID: 8363431759520401728, guid: 733fe534f72f46d4eaf58c24f2e8aa21, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8363431759520401728, guid: 733fe534f72f46d4eaf58c24f2e8aa21, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8363431759520401728, guid: 733fe534f72f46d4eaf58c24f2e8aa21, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8363431759520401728, guid: 733fe534f72f46d4eaf58c24f2e8aa21, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8680713927226037576, guid: 733fe534f72f46d4eaf58c24f2e8aa21, type: 3}
       propertyPath: m_Name
       value: Barrel
       objectReference: {fileID: 0}
     - target: {fileID: 8680713927226037576, guid: 733fe534f72f46d4eaf58c24f2e8aa21, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
