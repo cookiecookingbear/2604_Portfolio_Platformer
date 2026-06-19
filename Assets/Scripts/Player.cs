@@ -1,4 +1,4 @@
-﻿using Unity.Collections;
+using Unity.Collections;
 using UnityEditor;
 using UnityEngine;
 
@@ -79,8 +79,8 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     //private Animator animator;
 
-    private float yPos;
-    public float YPos => yPos;
+    private float highestYPos;
+    public float HighestYPos => highestYPos;
 
 
 
@@ -99,7 +99,7 @@ public class Player : MonoBehaviour
         Update_RecoveringDash();
         Update_CoyoteTime();
         Update_State();
-        Update_Y_Position();
+        Update_GetHighestY();
         //Update_RecoveringExhaust();
     }
 
@@ -368,11 +368,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Update_Y_Position()
-    {
-        yPos = transform.position.y;
-    }
-
+    
     private void Exhausted()
     {
         isExhausted = true;
@@ -388,6 +384,14 @@ public class Player : MonoBehaviour
 
         Vector2 knockback = normal + Vector2.up;
         rb.AddForce(knockback * barrelKnockback, ForceMode2D.Impulse);
+    }
+
+    //다른 곳에서 플레이어의 최고 도달 높이를 호출하기 위한 프로퍼티 갱신
+    public void Update_GetHighestY()
+    {
+        if (highestYPos > transform.position.y) return;
+
+        highestYPos = transform.position.y;
     }
 
     private void OnDrawGizmos()

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlatformGenerator : MonoBehaviour
@@ -13,7 +13,7 @@ public class PlatformGenerator : MonoBehaviour
 
     // 초기 시작시 플랫폼이 없다가 베이스에 발이 닿으면 그때 큐에 담긴 빈 부모 오브젝트의 개수를 받아서 3개 미만이면 일단 세개를 한꺼번에 생성하도록? 아님 5개 다 만들어놔도 되고.
 
-    private enum PieceType
+    public enum PieceType
     {
         Normal,
         Hole,
@@ -21,22 +21,22 @@ public class PlatformGenerator : MonoBehaviour
         End
     }
     [SerializeField] private GameObject platformPrefab;
-    private float xPosition = 2.0f;     //빈 부모 오브젝트 글로벌 x좌표
-    [SerializeField] private float yInterval = 4.0f;     //층간격, 빈 부모 오브젝트에 적용
-    private float roll = 2.5f;          //기울기, locatingSide 계산하여 빈 부모 오브젝트에 적용
-    //roll 대신에 우측 플랫폼에 y회전 180을 주면 그대로 좌측 플랫폼 모양이 됨.
-    private int locatingSide = 1;       //플랫폼 배치 위치(좌 = -1, 우 = 1)
+    private float xPosition = 2.0f;                         //빈 부모 오브젝트 글로벌 x좌표
+    [SerializeField] private float yInterval = 4.0f;        //층간격, 빈 부모 오브젝트에 적용
+    private float roll = 2.5f;                              //기울기, locatingSide 계산하여 빈 부모 오브젝트에 적용
+                                                             //roll 대신에 우측 플랫폼에 y회전 180을 주면 그대로 좌측 플랫폼 모양이 됨.
+    private int locatingSide = 1;                           //플랫폼 배치 위치(좌 = -1, 우 = 1)
 
-    private float lastYPosition = -5.4f;    // 마지막으로 만들어진 빈 부모 오브젝트의 y좌표
+    private float lastYPosition = -5.4f;                    // 마지막으로 만들어진 빈 부모 오브젝트의 y좌표
 
     private float playerYPos;
-    private float highestPlayerYpos;          //플레이어 최고높이
+    private float highestPlayerYpos;                        //플레이어 최고높이
     private int floor = 1;
 
     private GameObject parent;
 
 
-    private Queue<GameObject> emptyParentObjects = new Queue<GameObject>();//이거 근데 인덱스 접근 안되는데 디큐 하고서 디스트로이 어케할..가 아니라 디큐를 변수로 받아서 그걸 부수면 되겠구나 넣을때도 변수로 만들고 담는게 맞을듯
+    private Queue<GameObject> emptyParentObjects = new Queue<GameObject>();
 
 
     private Player player;
@@ -61,20 +61,15 @@ public class PlatformGenerator : MonoBehaviour
 
     private void Update()
     {
-        Update_Get_Player_YPos();
+        Update_Get_Player_HighestYPos();
         Update_Generate_Platform();
         Update_DestroyPlatformParent();
     }
 
-    private void Update_Get_Player_YPos()
+    private void Update_Get_Player_HighestYPos()
     {
-        playerYPos = player.YPos;
+        playerYPos = player.HighestYPos;
         
-        if(highestPlayerYpos < playerYPos)
-        {
-            highestPlayerYpos = playerYPos;
-        }
-
     }
 
     private void Update_Generate_Platform()
@@ -124,7 +119,7 @@ public class PlatformGenerator : MonoBehaviour
 
     private void Update_DestroyPlatformParent()
     {
-        if (emptyParentObjects.Count <= 7) return;
+        if (emptyParentObjects.Count <= 5) return;
        
         GameObject destroy = emptyParentObjects.Dequeue();
         Destroy(destroy);
