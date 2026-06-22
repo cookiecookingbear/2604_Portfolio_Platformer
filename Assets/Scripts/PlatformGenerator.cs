@@ -20,26 +20,28 @@ public class PlatformGenerator : MonoBehaviour
         Reward,
         End
     }
-    [SerializeField] private GameObject platformPrefab;
+
+    [SerializeField] private GameObject floorPrefab;
+    [SerializeField] private GameObject floor_NormalPrefab;
+    [SerializeField] private GameObject floor_HolePrefab;
+    [SerializeField] private GameObject floor_EndPrefab;
+
     private float xPosition = 2.0f;                         //빈 부모 오브젝트 글로벌 x좌표
-    [SerializeField] private float yInterval = 4.0f;        //층간격, 빈 부모 오브젝트에 적용
+    [SerializeField] private float yInterval = 4.8f;        //층간격, 빈 부모 오브젝트에 적용
     private float roll = 2.5f;                              //기울기, locatingSide 계산하여 빈 부모 오브젝트에 적용
                                                              //roll 대신에 우측 플랫폼에 y회전 180을 주면 그대로 좌측 플랫폼 모양이 됨.
     private int locatingSide = 1;                           //플랫폼 배치 위치(좌 = -1, 우 = 1)
 
     private float lastYPosition = -5.4f;                    // 마지막으로 만들어진 빈 부모 오브젝트의 y좌표
 
-    private float playerYPos;
     private float highestPlayerYpos;                        //플레이어 최고높이
     private int floor = 1;
-
-    private GameObject parent;
-
 
     private Queue<GameObject> emptyParentObjects = new Queue<GameObject>();
 
 
     private Player player;
+    private PlatformRatioGenerator ratio;
 
     private void Awake()
     {
@@ -51,37 +53,31 @@ public class PlatformGenerator : MonoBehaviour
             return;
         }
 
-        if(platformPrefab is null)
-        {
-            Debug.Log("플랫폼 생성기에 플랫폼 프리팹 연결 안됐음", this);
-            enabled = false;
-            return;
-        }
+        ratio = GetComponent<PlatformRatioGenerator>();
+        
     }
 
     private void Update()
     {
-        Update_Get_Player_HighestYPos();
+        Update_GetHighestPlayerY();
         Update_Generate_Platform();
         Update_DestroyPlatformParent();
     }
 
-    private void Update_Get_Player_HighestYPos()
-    {
-        playerYPos = player.HighestYPos;
-        
-    }
 
+    private void Update_GetHighestPlayerY()
+    {
+        highestPlayerYpos = player.HighestYPos;
+    }
     private void Update_Generate_Platform()
     {
         if(lastYPosition < highestPlayerYpos + yInterval * 2)
         {
-            AddParent();
-            InsertPlatform();
+            AddPlatform();
         }
     }
 
-    private void AddParent()
+    private void AddPlatform()
     {
         locatingSide *= -1;
 
@@ -90,7 +86,9 @@ public class PlatformGenerator : MonoBehaviour
         position.x = xPosition * locatingSide;
         position.y = lastYPosition + yInterval;
 
-        parent = new GameObject($"floor{floor}");
+        GameObject parent = Instantiate(floorPrefab);
+        parent.name = $"floor : {floor}";
+        floor++;
 
         parent.transform.position = position;
 
@@ -106,17 +104,33 @@ public class PlatformGenerator : MonoBehaviour
         lastYPosition = position.y;
 
         emptyParentObjects.Enqueue(parent);
+
+        PieceType[] platformType = ratio.MakePlatform();
+
+        for (int i = 0; i < platformType.Length; i++)
+        {
+            Transform slot = parent.transform.GetChild(i);
+
+            GameObject piece = GetPieceType(platformType[i]);
+
+            Instantiate(piece, slot, false);
+        }
+        
     }
 
-    private void InsertPlatform()
+    private GameObject GetPieceType(PlatformGenerator.PieceType pieceType)
     {
-        Instantiate(platformPrefab, parent.transform, false);
-        floor++;
-
-        print($"{floor}층의 부모에 플랫폼 삽입됨");
-
+        switch (pieceType)
+        {
+            case PlatformGenerator.PieceType.Normal:
+                return floor_NormalPrefab;
+            case PlatformGenerator.PieceType.Hole:
+                return floor_HolePrefab;
+            default:
+                return floor_EndPrefab;
+        }
     }
-
+    
     private void Update_DestroyPlatformParent()
     {
         if (emptyParentObjects.Count <= 5) return;

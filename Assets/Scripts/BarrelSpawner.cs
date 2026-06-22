@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 
 public class BarrelSpawner : MonoBehaviour
@@ -13,6 +13,7 @@ public class BarrelSpawner : MonoBehaviour
     [SerializeField] private float instantiateTimeInterval = 3.5f;
 
     [SerializeField] private GameObject barrelPrefab;
+    
 
     private Coroutine spawnCoroutine;
 
