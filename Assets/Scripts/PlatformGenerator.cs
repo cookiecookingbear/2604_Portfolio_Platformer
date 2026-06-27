@@ -25,17 +25,20 @@ public class PlatformGenerator : MonoBehaviour
     [SerializeField] private GameObject floor_NormalPrefab;
     [SerializeField] private GameObject floor_HolePrefab;
     [SerializeField] private GameObject floor_EndPrefab;
+    [SerializeField] private GameObject missionSwitch;
 
     private float xPosition = 2.0f;                         //빈 부모 오브젝트 글로벌 x좌표
     [SerializeField] private float yInterval = 4.8f;        //층간격, 빈 부모 오브젝트에 적용
     private float roll = 2.5f;                              //기울기, locatingSide 계산하여 빈 부모 오브젝트에 적용
                                                              //roll 대신에 우측 플랫폼에 y회전 180을 주면 그대로 좌측 플랫폼 모양이 됨.
     private int locatingSide = 1;                           //플랫폼 배치 위치(좌 = -1, 우 = 1)
+    public int LocatingSide => locatingSide;
 
     private float lastYPosition = -5.4f;                    // 마지막으로 만들어진 빈 부모 오브젝트의 y좌표
 
     private float highestPlayerYpos;                        //플레이어 최고높이
     private int floor = 1;
+    public int Floor => floor;
 
     private Queue<GameObject> emptyParentObjects = new Queue<GameObject>();
 
@@ -54,6 +57,12 @@ public class PlatformGenerator : MonoBehaviour
         }
 
         ratio = GetComponent<PlatformRatioGenerator>();
+        if(ratio is null)
+        {
+            Debug.LogError("플랫폼확률생성기 연결안됨", this);
+            enabled = false;
+            return;
+        }
         
     }
 
@@ -88,7 +97,9 @@ public class PlatformGenerator : MonoBehaviour
 
         GameObject parent = Instantiate(floorPrefab);
         parent.name = $"floor : {floor}";
-        floor++;
+        FloorPrefab prefab = parent.GetComponent<FloorPrefab>();
+        prefab.GetFloor(floor);
+        //floor++;      //하위 내용에서 floor을 참조하는 메서드가 있어 AddPlatform과정이 모두 종료되기 직전에 floor++함
 
         parent.transform.position = position;
 
@@ -115,7 +126,10 @@ public class PlatformGenerator : MonoBehaviour
 
             Instantiate(piece, slot, false);
         }
-        
+
+        AddMissionSwitch(parent);
+
+        floor++;        
     }
 
     private GameObject GetPieceType(PlatformGenerator.PieceType pieceType)
@@ -133,9 +147,23 @@ public class PlatformGenerator : MonoBehaviour
     
     private void Update_DestroyPlatformParent()
     {
-        if (emptyParentObjects.Count <= 5) return;
+        if (emptyParentObjects.Count <= 6) return;
        
         GameObject destroy = emptyParentObjects.Dequeue();
         Destroy(destroy);
+    }
+
+    private void AddMissionSwitch(GameObject parent)
+    {
+        if (floor % 5 != 0) return;
+
+        Transform slot4 = parent.transform.GetChild(4);
+
+        GameObject switchObject = Instantiate(missionSwitch, slot4, false);
+
+        Vector2 switchLocalPos = switchObject.transform.localPosition;
+        switchLocalPos.x = 1.12f;
+        switchLocalPos.y = 2.05f;
+        switchObject.transform.localPosition = switchLocalPos;
     }
 }

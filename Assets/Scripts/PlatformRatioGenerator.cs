@@ -71,6 +71,8 @@ public class PlatformRatioGenerator : MonoBehaviour
 
         platform[platform.Length - 1] = PlatformGenerator.PieceType.End;
 
+        
+
         return platform;
     }
 
