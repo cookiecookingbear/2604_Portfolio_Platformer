@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 [RequireComponent (typeof(Rigidbody2D))]
 public class Barrel : MonoBehaviour
@@ -12,12 +12,12 @@ public class Barrel : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("Player")?.GetComponent<Player>();
-        if (player == null)
-        {
-            Debug.LogError("player연결안됨", this);
-            enabled = false;
-        }
+        //player = GameObject.Find("Player")?.GetComponent<Player>();
+        //if (player == null)
+        //{
+        //    Debug.LogError("player연결안됨", this);
+        //    enabled = false;
+        //}
 
         rb = GetComponent<Rigidbody2D>();
 
@@ -34,6 +34,8 @@ public class Barrel : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            Player player = collision.gameObject.GetComponent<Player>();
+            if (player is null) return;
             //플레이어 튕겨내기
             Vector2 normal = -collision.contacts[0].normal;
             player.HitbyBarrel(normal);
@@ -45,13 +47,6 @@ public class Barrel : MonoBehaviour
             return;
         }
 
-        //if (collision.gameObject.CompareTag("Destroyer"))
-        //{
-        //    //플레이어 주위를 감싸는 플레이어 이동방지막(좌우) + 낙사판정판(하단)중 낙사판정판에 닿으면 배럴 삭제
-        //    //TODO
-
-        //    return;
-        //}
     }
 
 

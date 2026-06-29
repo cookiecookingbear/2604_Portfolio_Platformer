@@ -12,4 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a1c8dd7c998774586206e25048aca2, type: 3}
   m_Name: SO_MissionInfo
   m_EditorClassIdentifier: Assembly-CSharp::SO_MissionInfo
-  testing: 5
+  collectCoins:
+    missionType: 0
+    targetCount: 5
+    missionTime: 40
+  killMonster:
+    missionType: 1
+    targetCount: 3
+    missionTime: 40

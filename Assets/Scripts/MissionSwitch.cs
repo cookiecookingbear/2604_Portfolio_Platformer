@@ -11,7 +11,10 @@ public class MissionSwitch : MonoBehaviour
     private GameObject on;
     [SerializeField] private TextMeshProUGUI interactionableStat;
 
-    private bool interactionable = false;
+    private bool interactionable = true;
+    private int floor;
+    private float distance;
+    private float showingDistance = 1.75f;
 
     private void Awake()
     {
@@ -42,59 +45,57 @@ public class MissionSwitch : MonoBehaviour
         interactionableStat.enabled = false;
     }
 
-    private void Update()
+    private void Start()
     {
-        if (missionManager.IsOnMission == true) return;
-        GetDistanceToPlayer();
-    }
-
-    private void GetDistanceToPlayer()
-    {
-        float distance = Vector2.Distance(this.transform.position, player.transform.position);
-
-        if(distance < 1.75f)
-        {
-            EnableInteraction();
-            interactionable = true;
-        }
-        else
-        {
-            DisableInteraction();
-        }
-    }
-
-    private void EnableInteraction()
-    {
-        interactionableStat.enabled = true;
-        int floor = GetRootFloor();
-
+        floor = GetRootFloor();
         if (floor % 2 != 0)
         {
             interactionableStat.rectTransform.localRotation = Quaternion.Euler(0f, 180f, 0f);
         }
+    }
+    private void Update()
+    {
+        Update_GetDistanceToPlayer();
+        Update_ShowStatUI();
+        Update_EnableInteraction();
+    }
+
+    private void Update_GetDistanceToPlayer()
+    {
+        distance = Vector2.Distance(this.transform.position, player.transform.position);
+    }
+
+    private void Update_EnableInteraction()
+    {
+        if (distance > showingDistance) return;
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            //missionStart
-            //missionManager.MissionEnable();       //TODO
-            //print("스위치 활성화");
+            missionManager.MissionEnable(floor);      
             off.SetActive(false);
             on.SetActive(true);
+            interactionable = false;
         }
-    }
-
-    private void DisableInteraction()
-    {
-        interactionableStat.enabled = false;
-        interactionable = false;
     }
 
     private int GetRootFloor()
     {
         FloorPrefab root = transform.root.gameObject.GetComponent<FloorPrefab>();
 
-        int floor = root.Floor;
+        floor = root.Floor;
         return floor;
+    }
+
+    private void Update_ShowStatUI()
+    {
+        if(distance > showingDistance
+            ||missionManager.IsOnMission == true)
+        {
+            interactionableStat.enabled = false;
+            return;
+        }
+
+        interactionableStat.enabled = true;
     }
 
 }
